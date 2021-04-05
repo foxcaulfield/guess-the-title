@@ -1,22 +1,9 @@
 import { createStore } from "redux";
+import fieldReducer from "./reducers/fieldReducer";
 
-const initialState = {
-  fieldSizeX: 3,
-  fieldSizeY: 3,
-  markerPosition: null,
-};
+//create the store
+const store = createStore(fieldReducer);
 
-function appReducer(state = initialState, action) {
-  switch (action.type) {
-    case "SET_MARKER_POSITION":
-      return { ...state };
-
-    default: {
-      return state;
-    }
-  }
-}
-
-const store = createStore(appReducer);
+window.store = store;
 
 export default store;
