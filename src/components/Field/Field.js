@@ -10,12 +10,16 @@ import {
   removeRowsActionCreator,
   moveMarkerActionCreator,
 } from "../../store/reducers/fieldReducer";
-import { Button, Modal } from "react-bootstrap";
-
+import { Button, Alert } from "react-bootstrap";
+import { CSSTransition } from "react-transition-group";
+import "./styles.css";
 function Field(props) {
+  const [showButton, setShowButton] = useState(true);
+  const [showMessage, setShowMessage] = useState(false);
+
   const [isGameStarted, setGameStarted] = useState(false);
 
-  const [attempt, setAttempt] = useState(1);
+  const [attempt, setAttempt] = useState(0);
 
   const handleAttempt = () => {
     setAttempt(0);
@@ -45,7 +49,7 @@ function Field(props) {
   }
 
   return (
-    <div>
+    <div className="container">
       <Button
         disabled={isGameStarted && attempt}
         onClick={() => {
@@ -53,6 +57,7 @@ function Field(props) {
           props.moveMarker();
           setGameStarted(true);
           setAttempt(1);
+          setShowMessage(true);
         }}
       >
         Start new game!
@@ -68,9 +73,6 @@ function Field(props) {
             : { ...title, isDestination: false }
         )}
       </FieldContainer>
-      <div style={{ fontSize: "1.5em" }}>
-        {props.state.markerMoves.join("")}
-      </div>
       <div>
         <Button
           variant="secondary"
@@ -105,6 +107,47 @@ function Field(props) {
           remove rows
         </Button>
       </div>
+      {showButton && isGameStarted && (
+        <Button onClick={() => setShowMessage(true)} size="sm">
+          Show the path
+        </Button>
+      )}
+      <CSSTransition
+        in={showMessage}
+        // in={true}
+        // timeout={400}
+        timeout={{
+          appear: 500,
+          enter: 300,
+          exit: 500,
+        }}
+        transitionAppear={true}
+        transitionAppearTimeout={3000}
+        transitionEnter={true}
+        transitionEnterTimeout={3000}
+        classNames="alert"
+        mountOnEnter
+        unmountOnExit
+        appear
+        enter
+        onEnter={() => setShowButton(false)}
+        onExited={() => setShowButton(true)}
+      >
+        <Alert
+          variant="primary"
+          // timeout={400}
+          mountOnEnter
+          dismissible
+          onClose={() => setShowMessage(false)}
+        >
+          <Alert.Heading>The path</Alert.Heading>
+          <div style={{ fontSize: "1.5em" }}>
+            {props.state.markerMoves.join("")}
+          </div>
+          {/* <p>This alert message is being transitioned in and out of the DOM.</p> */}
+          <Button onClick={() => setShowMessage(false)}>Hide</Button>
+        </Alert>
+      </CSSTransition>
     </div>
   );
 }

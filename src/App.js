@@ -8,14 +8,15 @@ function App() {
   return (
     <Provider store={store}>
       <div className="container">
-        <div>
-          <div>
-            <h1>Guess the title</h1>
+        <div className="containerSecondary">
+          <h1>Guess the title</h1>
+          <h4>
             There is a hidden marker in one of the titles. Try to guess where it
             is. Start count your steps from 🏁
-          </div>
-          <Field></Field>
+          </h4>
         </div>
+
+        <Field></Field>
       </div>
     </Provider>
   );
