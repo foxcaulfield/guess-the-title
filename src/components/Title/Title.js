@@ -10,8 +10,18 @@ function Title(props) {
   const handleShow = () => setShow(true);
   let isWin = props.destination === props.value;
   return (
-    <div>
-      <Block
+    <div style={{ alignSelf: "center", justifySelf: "center" }}>
+      <Button
+        style={{
+          width: 80,
+          height: 40,
+          flex: 1,
+          justifyContent: "center",
+          alignItems: "center",
+          fontSize: "1em",
+        }}
+        variant={props.isDestination ? "info" : "warning"}
+        size="lg"
         disabled={props.attempt ? false : true}
         isMarker={props.isMarker}
         onClick={
@@ -33,48 +43,55 @@ function Title(props) {
         isWin={isWin}
         attempt={props.attempt}
       >
-        {/* {props.value} */}
+        {props.value}
         {props.isMarker ? "🏁" : ""}
-        <Modal show={show} onHide={handleClose}>
-          <Modal.Header closeButton>
-            <Modal.Title>Modal heading</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            {props.destination === props.value
-              ? "Right! click 'Start new game!' to start a new game"
-              : `Oops, you failed! Right answer is ${props.destination}.click 'Start new game!' to start a new game`}
-          </Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
-              Close
-            </Button>
-            <Button variant="primary" onClick={handleClose}>
+      </Button>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Info</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {props.destination === props.value
+            ? "Right! click 'Start new game!' to start a new game"
+            : `Oops, you failed! Right answer is ${props.destination}.click 'Start new game!' to start a new game`}
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Ok
+          </Button>
+          {/* <Button variant="primary" onClick={handleClose}>
               Save Changes
-            </Button>
-          </Modal.Footer>
-        </Modal>
-      </Block>
+            </Button> */}
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 }
 
 export default Title;
 
-//get the boolean property from props and adapt style
-const Block = styled.button`
-  background-color: ${(props) =>
-    props.destination === props.value ? "palevioletred" : "white"};
-  color: ${(props) =>
-    props.destination === props.value ? "white" : "palevioletred"};
-  display: inline-block;
-  visibility: ${(props) => (props.isGameStarted ? "visible" : "hidden")};
-  cursor: pointer;
-  font-size: 2em;
-  font-size: 1em;
-  margin: 1em;
-  padding: 0.25em 1em;
-  border-radius: 3px;
-  &:hover {
-    background-color: lightblue;
-  }
-`;
+// background-color: ${(props) =>
+//   props.destination === props.value ? "palevioletred" : "white"};
+// color: ${(props) =>
+//   props.destination === props.value ? "white" : "palevioletred"};
+// display: inline-block;
+// visibility: ${(props) => (props.isGameStarted ? "visible" : "hidden")};
+
+// //get the boolean property from props and adapt style
+// const Block = styled.button`
+//   background-color: ${(props) =>
+//     props.destination === props.value ? "palevioletred" : "white"};
+//   color: ${(props) =>
+//     props.destination === props.value ? "white" : "palevioletred"};
+//   display: inline-block;
+//   visibility: ${(props) => (props.isGameStarted ? "visible" : "hidden")};
+//   cursor: pointer;
+//   font-size: 2em;
+//   font-size: 1em;
+//   margin: 1em;
+//   padding: 0.25em 1em;
+//   border-radius: 3px;
+//   &:hover {
+//     background-color: lightblue;
+//   }
+// `;

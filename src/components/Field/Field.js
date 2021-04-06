@@ -10,6 +10,7 @@ import {
   removeRowsActionCreator,
   moveMarkerActionCreator,
 } from "../../store/reducers/fieldReducer";
+import { Button, Modal } from "react-bootstrap";
 
 function Field(props) {
   const [isGameStarted, setGameStarted] = useState(false);
@@ -35,6 +36,7 @@ function Field(props) {
           handleAttempt={handleAttempt}
           isGameStarted={isGameStarted}
           attempt={attempt}
+          isDestination={true}
         ></Title>
       );
     }
@@ -42,7 +44,7 @@ function Field(props) {
 
   return (
     <div>
-      <button
+      <Button
         disabled={isGameStarted && attempt}
         onClick={() => {
           props.resetMarkerPosition();
@@ -52,28 +54,48 @@ function Field(props) {
         }}
       >
         Start new game!
-      </button>
+      </Button>
 
       <FieldContainer
         fieldSizeX={props.state.fieldSizeX}
         fieldSizeY={props.state.fieldSizeY}
       >
-        {titles}
+        {titles.filter((title) => title.value === title.destination)}
       </FieldContainer>
       {props.state.markerMoves.join("")}
       <div>
-        <button disabled={attempt} onClick={props.addColumns}>
+        <Button
+          variant="secondary"
+          size="sm"
+          disabled={attempt}
+          onClick={props.addColumns}
+        >
           add cols
-        </button>
-        <button disabled={attempt} onClick={props.addRows}>
+        </Button>
+        <Button
+          variant="secondary"
+          size="sm"
+          disabled={attempt}
+          onClick={props.addRows}
+        >
           add rows
-        </button>
-        <button disabled={attempt} onClick={props.removeColumns}>
+        </Button>
+        <Button
+          variant="secondary"
+          size="sm"
+          disabled={attempt}
+          onClick={props.removeColumns}
+        >
           remove cols
-        </button>
-        <button disabled={attempt} onClick={props.removeRows}>
+        </Button>
+        <Button
+          variant="secondary"
+          size="sm"
+          disabled={attempt}
+          onClick={props.removeRows}
+        >
           remove rows
-        </button>
+        </Button>
       </div>
     </div>
   );
