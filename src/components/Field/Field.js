@@ -28,7 +28,6 @@ function Field(props) {
   for (let y = 1; y <= props.state.fieldSizeY; y++) {
     for (let x = 1; x <= props.state.fieldSizeX; x++) {
       titles.push(
-        // x + "" + y
         <Title
           key={x + "" + y}
           value={x + "" + y}
@@ -63,17 +62,15 @@ function Field(props) {
         fieldSizeX={props.state.fieldSizeX}
         fieldSizeY={props.state.fieldSizeY}
       >
-        {/* {titles.filter((title) => title.value === title.destination)} */}
         {titles.map((title) =>
           title.value === title.destination
             ? { ...title, isDestination: true }
             : { ...title, isDestination: false }
         )}
-        {/* {titles.map(function(title) => {
-
-        } title.value === title.destination)} */}
       </FieldContainer>
-      {props.state.markerMoves.join("")}
+      <div style={{ fontSize: "1.5em" }}>
+        {props.state.markerMoves.join("")}
+      </div>
       <div>
         <Button
           variant="secondary"
@@ -115,9 +112,11 @@ function Field(props) {
 //render a given number of columns and rows (get them from props)
 const FieldContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(${(props) => props.fieldSizeX}, 1fr);
+  grid-template-columns: repeat(${(props) => props.fieldSizeX}, 80px);
   grid-template-rows: repeat(${(props) => props.fieldSizeY}, 1fr);
   grid-gap: 5px;
+  justify-content: center;
+  margin: 1em;
 `;
 
 //pass state to props

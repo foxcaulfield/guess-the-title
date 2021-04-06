@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import styled from "styled-components";
 import { Button, Modal } from "react-bootstrap";
 
 function Title(props) {
@@ -27,14 +26,10 @@ function Title(props) {
         onClick={
           props.destination === props.value
             ? (e) => {
-                // alert("Right! click 'Start new game!' to start a new game");
                 props.handleAttempt();
                 handleShow();
               }
             : (e) => {
-                // alert(
-                //   `Oops, you failed! Right answer is ${props.destination}.click 'Start new game!' to start a new game`
-                // );
                 props.handleAttempt();
                 handleShow();
               }
@@ -59,9 +54,6 @@ function Title(props) {
           <Button variant="secondary" onClick={handleClose}>
             Ok
           </Button>
-          {/* <Button variant="primary" onClick={handleClose}>
-              Save Changes
-            </Button> */}
         </Modal.Footer>
       </Modal>
     </div>
@@ -69,29 +61,3 @@ function Title(props) {
 }
 
 export default Title;
-
-// background-color: ${(props) =>
-//   props.destination === props.value ? "palevioletred" : "white"};
-// color: ${(props) =>
-//   props.destination === props.value ? "white" : "palevioletred"};
-// display: inline-block;
-// visibility: ${(props) => (props.isGameStarted ? "visible" : "hidden")};
-
-// //get the boolean property from props and adapt style
-// const Block = styled.button`
-//   background-color: ${(props) =>
-//     props.destination === props.value ? "palevioletred" : "white"};
-//   color: ${(props) =>
-//     props.destination === props.value ? "white" : "palevioletred"};
-//   display: inline-block;
-//   visibility: ${(props) => (props.isGameStarted ? "visible" : "hidden")};
-//   cursor: pointer;
-//   font-size: 2em;
-//   font-size: 1em;
-//   margin: 1em;
-//   padding: 0.25em 1em;
-//   border-radius: 3px;
-//   &:hover {
-//     background-color: lightblue;
-//   }
-// `;
