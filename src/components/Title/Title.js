@@ -20,7 +20,7 @@ function Title(props) {
           alignItems: "center",
           fontSize: "1em",
         }}
-        variant={props.isDestination ? "info" : "warning"}
+        variant={props.isDestination && !props.attempt ? "info" : "warning"}
         size="lg"
         disabled={props.attempt ? false : true}
         isMarker={props.isMarker}
@@ -43,7 +43,7 @@ function Title(props) {
         isWin={isWin}
         attempt={props.attempt}
       >
-        {props.value}
+        {/* {props.value} */}
         {props.isMarker ? "🏁" : ""}
       </Button>
       <Modal show={show} onHide={handleClose}>
@@ -53,7 +53,7 @@ function Title(props) {
         <Modal.Body>
           {props.destination === props.value
             ? "Right! click 'Start new game!' to start a new game"
-            : `Oops, you failed! Right answer is ${props.destination}.click 'Start new game!' to start a new game`}
+            : `Oops, you failed! Right answer is marked by green color. Click 'Start new game!' to start a new game`}
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>

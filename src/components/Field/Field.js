@@ -28,6 +28,7 @@ function Field(props) {
   for (let y = 1; y <= props.state.fieldSizeY; y++) {
     for (let x = 1; x <= props.state.fieldSizeX; x++) {
       titles.push(
+        // x + "" + y
         <Title
           key={x + "" + y}
           value={x + "" + y}
@@ -36,7 +37,9 @@ function Field(props) {
           handleAttempt={handleAttempt}
           isGameStarted={isGameStarted}
           attempt={attempt}
-          isDestination={true}
+          isDestination={
+            x + "" + y === props.state.destinationPosition.join("")
+          }
         ></Title>
       );
     }
@@ -60,7 +63,15 @@ function Field(props) {
         fieldSizeX={props.state.fieldSizeX}
         fieldSizeY={props.state.fieldSizeY}
       >
-        {titles.filter((title) => title.value === title.destination)}
+        {/* {titles.filter((title) => title.value === title.destination)} */}
+        {titles.map((title) =>
+          title.value === title.destination
+            ? { ...title, isDestination: true }
+            : { ...title, isDestination: false }
+        )}
+        {/* {titles.map(function(title) => {
+
+        } title.value === title.destination)} */}
       </FieldContainer>
       {props.state.markerMoves.join("")}
       <div>
