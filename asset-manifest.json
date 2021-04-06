@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/guess-the-title/static/css/main.44af7fed.chunk.css",
+    "main.js": "/guess-the-title/static/js/main.fc1039ef.chunk.js",
+    "main.js.map": "/guess-the-title/static/js/main.fc1039ef.chunk.js.map",
+    "runtime-main.js": "/guess-the-title/static/js/runtime-main.aac8b1e2.js",
+    "runtime-main.js.map": "/guess-the-title/static/js/runtime-main.aac8b1e2.js.map",
+    "static/js/2.ab689242.chunk.js": "/guess-the-title/static/js/2.ab689242.chunk.js",
+    "static/js/2.ab689242.chunk.js.map": "/guess-the-title/static/js/2.ab689242.chunk.js.map",
+    "static/js/3.37930d87.chunk.js": "/guess-the-title/static/js/3.37930d87.chunk.js",
+    "static/js/3.37930d87.chunk.js.map": "/guess-the-title/static/js/3.37930d87.chunk.js.map",
+    "index.html": "/guess-the-title/index.html",
+    "static/css/main.44af7fed.chunk.css.map": "/guess-the-title/static/css/main.44af7fed.chunk.css.map",
+    "static/js/2.ab689242.chunk.js.LICENSE.txt": "/guess-the-title/static/js/2.ab689242.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.aac8b1e2.js",
+    "static/js/2.ab689242.chunk.js",
+    "static/css/main.44af7fed.chunk.css",
+    "static/js/main.fc1039ef.chunk.js"
+  ]
+}
