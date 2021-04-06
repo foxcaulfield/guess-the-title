@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import { Button, Modal } from "react-bootstrap";
 
 function Title(props) {
   console.log(props);
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   let isWin = props.destination === props.value;
   return (
     <div>
@@ -12,22 +17,42 @@ function Title(props) {
         onClick={
           props.destination === props.value
             ? (e) => {
-                alert("Right! click 'Start new game!' to start a new game");
+                // alert("Right! click 'Start new game!' to start a new game");
                 props.handleAttempt();
+                handleShow();
               }
             : (e) => {
-                alert(
-                  `You wrong! Right answer is ${props.destination} click 'Start new game!' to start a new game`
-                );
+                // alert(
+                //   `Oops, you failed! Right answer is ${props.destination}.click 'Start new game!' to start a new game`
+                // );
                 props.handleAttempt();
+                handleShow();
               }
         }
         isGameStarted={props.isGameStarted}
         isWin={isWin}
         attempt={props.attempt}
       >
-        {props.value}
+        {/* {props.value} */}
         {props.isMarker ? "🏁" : ""}
+        <Modal show={show} onHide={handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>Modal heading</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            {props.destination === props.value
+              ? "Right! click 'Start new game!' to start a new game"
+              : `Oops, you failed! Right answer is ${props.destination}.click 'Start new game!' to start a new game`}
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              Close
+            </Button>
+            <Button variant="primary" onClick={handleClose}>
+              Save Changes
+            </Button>
+          </Modal.Footer>
+        </Modal>
       </Block>
     </div>
   );
