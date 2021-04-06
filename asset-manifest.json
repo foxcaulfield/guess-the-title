@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/guess-the-title/static/css/main.44af7fed.chunk.css",
-    "main.js": "/guess-the-title/static/js/main.084ae1dd.chunk.js",
-    "main.js.map": "/guess-the-title/static/js/main.084ae1dd.chunk.js.map",
+    "main.js": "/guess-the-title/static/js/main.dca04015.chunk.js",
+    "main.js.map": "/guess-the-title/static/js/main.dca04015.chunk.js.map",
     "runtime-main.js": "/guess-the-title/static/js/runtime-main.24e5c0d3.js",
     "runtime-main.js.map": "/guess-the-title/static/js/runtime-main.24e5c0d3.js.map",
     "static/css/2.150d169a.chunk.css": "/guess-the-title/static/css/2.150d169a.chunk.css",
@@ -20,6 +20,6 @@
     "static/css/2.150d169a.chunk.css",
     "static/js/2.9b4815c5.chunk.js",
     "static/css/main.44af7fed.chunk.css",
-    "static/js/main.084ae1dd.chunk.js"
+    "static/js/main.dca04015.chunk.js"
   ]
 }
