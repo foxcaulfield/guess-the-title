@@ -7,14 +7,15 @@ import store from "./store/reduxStore";
 function App() {
   return (
     <Provider store={store}>
-      <div>
-        <h1>Guess the title</h1>
-        <p>
-          There is a hidden marker in one of the titles. Try to guess where it
-          is.
-          
+      <div className="container">
+        <div>
+          <div>
+            <h1>Guess the title</h1>
+            There is a hidden marker in one of the titles. Try to guess where it
+            is. Start count your steps from 🏁
+          </div>
           <Field></Field>
-        </p>
+        </div>
       </div>
     </Provider>
   );

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Title from "../Title/Title";
 import styled from "styled-components";
 import { connect } from "react-redux";
@@ -8,20 +8,33 @@ import {
   addRowsActionCreator,
   removeColumnsActionCreator,
   removeRowsActionCreator,
+  moveMarkerActionCreator,
 } from "../../store/reducers/fieldReducer";
 
 function Field(props) {
+  const [isGameStarted, setGameStarted] = useState(false);
 
-//create an array and push components with value, key and boolean property in it
+  const [attempt, setAttempt] = useState(1);
+
+  const handleAttempt = () => {
+    setAttempt(0);
+    console.log("attempt left");
+    console.log(attempt);
+  };
+
+  //create an array and push components  in it
   let titles = [];
-
   for (let y = 1; y <= props.state.fieldSizeY; y++) {
     for (let x = 1; x <= props.state.fieldSizeX; x++) {
       titles.push(
         <Title
-        key={x + "" + y}
+          key={x + "" + y}
           value={x + "" + y}
           isMarker={x + "" + y === props.state.markerPosition.join("")}
+          destination={props.state.destinationPosition.join("")}
+          handleAttempt={handleAttempt}
+          isGameStarted={isGameStarted}
+          attempt={attempt}
         ></Title>
       );
     }
@@ -29,20 +42,39 @@ function Field(props) {
 
   return (
     <div>
-      {props.state.markerPosition.join("")}
-      <div>{props.state.markerPosition}</div>
-      <button onClick={props.resetMarkerPosition}>change</button>
-      <button onClick={props.addColumns}>add cols</button>
-      <button onClick={props.addRows}>add rows</button>
-      <button onClick={props.removeColumns}>remove cols</button>
-      <button onClick={props.removeRows}>remove rows</button>
+      <button
+        disabled={isGameStarted && attempt}
+        onClick={() => {
+          props.resetMarkerPosition();
+          props.moveMarker();
+          setGameStarted(true);
+          setAttempt(1);
+        }}
+      >
+        Start new game!
+      </button>
+
       <FieldContainer
         fieldSizeX={props.state.fieldSizeX}
         fieldSizeY={props.state.fieldSizeY}
       >
-
         {titles}
       </FieldContainer>
+      {props.state.markerMoves.join("")}
+      <div>
+        <button disabled={attempt} onClick={props.addColumns}>
+          add cols
+        </button>
+        <button disabled={attempt} onClick={props.addRows}>
+          add rows
+        </button>
+        <button disabled={attempt} onClick={props.removeColumns}>
+          remove cols
+        </button>
+        <button disabled={attempt} onClick={props.removeRows}>
+          remove rows
+        </button>
+      </div>
     </div>
   );
 }
@@ -79,6 +111,9 @@ let mapDispatchToProps = (dispatch) => {
     },
     removeRows: () => {
       dispatch(removeRowsActionCreator());
+    },
+    moveMarker: () => {
+      dispatch(moveMarkerActionCreator());
     },
   };
 };
